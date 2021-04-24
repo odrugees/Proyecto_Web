@@ -2,9 +2,10 @@ package com.edu.poli.proyecto.controller;
 
 
 import java.util.List;
-
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edu.poli.proyecto.model.Categoria;
+import com.edu.poli.proyecto.model.Comentario;
 import com.edu.poli.proyecto.model.Publicacion;
 import com.edu.poli.proyecto.model.Usuario;
 import com.edu.poli.proyecto.repository.CategoriaRepository;
@@ -23,6 +25,7 @@ import com.edu.poli.proyecto.repository.UsuarioRepository;
 
 @RestController
 @RequestMapping("/api/publicacion/")
+@CrossOrigin(origins = "*")
 public class PublicacionController {
 	
 	@Autowired
@@ -119,5 +122,14 @@ public class PublicacionController {
 		dbPublicacion.setPublicacionNoMeGusta(numeroNoMegusta);
 		publicacionRepository.save(dbPublicacion);
 		return dbPublicacion;
+	}
+	
+	@GetMapping("/pubicacionComentarios/{idPublicacion}")
+	public Set<Comentario> publicacionComentarios(@PathVariable Integer idPublicacion) {
+		
+		Publicacion publicacion = publicacionRepository.findById(idPublicacion).get();
+		Set<Comentario> listaComentario = publicacion.getComentario();
+		
+		return listaComentario;
 	}
 }
