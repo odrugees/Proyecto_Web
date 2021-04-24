@@ -10,6 +10,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Entity
@@ -27,9 +29,11 @@ public class Categoria {
 	private Boolean categoriaActiva;
 	
 	@OneToMany(mappedBy = "categoria")
+	@JsonIgnore
     private Set<Publicacion> publicacion;
 	
     @ManyToMany(mappedBy = "usuarioCategorias")
+    @JsonIgnore
     public Set<Usuario> usuario;
     
 	public Categoria() {
@@ -90,6 +94,8 @@ public class Categoria {
 				+ ", categoriaDescripcion=" + categoriaDescripcion + ", categoriaActiva=" + categoriaActiva
 				+ ", publicacion=" + publicacion + ", usuario=" + usuario + "]";
 	}
+
+
 
 	
 }

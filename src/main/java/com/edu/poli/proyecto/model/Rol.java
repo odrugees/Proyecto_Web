@@ -4,6 +4,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "rol" )
@@ -17,7 +19,9 @@ public class Rol {
 
 	private String rolDescripcion;
 	
+	
     @ManyToMany(mappedBy = "usuarioRoles")
+    @JsonIgnore
     public Set<Usuario> usuario;
 	
 	public Rol() {
@@ -58,8 +62,7 @@ public class Rol {
 
 	@Override
 	public String toString() {
-		return "Rol [rolId=" + rolId + ", rolNombre=" + rolNombre + ", rolDescripcion=" + rolDescripcion + ", usuario="
-				+ usuario + "]";
+		return "Rol [rolId=" + rolId + ", rolNombre=" + rolNombre + ", rolDescripcion=" + rolDescripcion + "]";
 	}
 
 	

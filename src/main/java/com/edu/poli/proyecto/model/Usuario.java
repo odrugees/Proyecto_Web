@@ -6,6 +6,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Entity
@@ -39,6 +41,7 @@ public class Usuario {
 			joinColumns = @JoinColumn(name = "usuarioId"),
 			inverseJoinColumns = @JoinColumn(name = "rolId")
 			)
+	@JsonIgnore
 	private Set<Rol> usuarioRoles = new HashSet<>();
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -47,12 +50,15 @@ public class Usuario {
 			joinColumns = @JoinColumn(name = "usuarioId"),
 			inverseJoinColumns = @JoinColumn(name = "categoriaId")
 			)
+	@JsonIgnore
 	private Set<Categoria> usuarioCategorias = new HashSet<>();
 	
 	@OneToMany(mappedBy = "usuario")
+	@JsonIgnore
     private Set<Publicacion> publicacion;
 	
 	@OneToMany(mappedBy = "usuario")
+	@JsonIgnore
     private Set<Comentario> comentario;
 	
 	public Usuario() {
@@ -111,6 +117,10 @@ public class Usuario {
 		return usuarioIntereses;
 	}
 
+	public boolean getUsuarioActivo() {
+		return usuarioActivo;
+	}
+
 	public void setUsuarioIntereses(String usuarioIntereses) {
 		this.usuarioIntereses = usuarioIntereses;
 	}
@@ -119,12 +129,9 @@ public class Usuario {
 		return usuarioConocimientos;
 	}
 
+
 	public void setUsuarioConocimientos(String usuarioConocimientos) {
 		this.usuarioConocimientos = usuarioConocimientos;
-	}
-
-	public boolean isUsuarioActivo() {
-		return usuarioActivo;
 	}
 
 	public void setUsuarioActivo(boolean usuarioActivo) {
@@ -172,6 +179,8 @@ public class Usuario {
 				+ usuarioActivo + ", usuarioRoles=" + usuarioRoles + ", usuarioCategorias=" + usuarioCategorias
 				+ ", publicacion=" + publicacion + ", comentario=" + comentario + "]";
 	}
+
+	
 	
 	
 }

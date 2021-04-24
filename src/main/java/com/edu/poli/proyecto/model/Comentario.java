@@ -25,7 +25,6 @@ public class Comentario {
 	
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuarioId")
-    @JsonIgnore
     private Usuario usuario;
     
     @ManyToOne(cascade = CascadeType.ALL)

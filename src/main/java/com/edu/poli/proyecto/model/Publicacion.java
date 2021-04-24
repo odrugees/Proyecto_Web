@@ -17,7 +17,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="publicacion")
@@ -29,12 +28,10 @@ public class Publicacion {
 		
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "categoriaId")
-    @JsonIgnore
     private Categoria categoria; 
     
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuarioId")
-    @JsonIgnore
     private Usuario usuario; 
     
 	private String publicacionTexto;
