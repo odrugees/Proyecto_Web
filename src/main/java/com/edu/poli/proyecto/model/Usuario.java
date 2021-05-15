@@ -50,7 +50,6 @@ public class Usuario {
 			joinColumns = @JoinColumn(name = "usuarioId"),
 			inverseJoinColumns = @JoinColumn(name = "categoriaId")
 			)
-	@JsonIgnore
 	private Set<Categoria> usuarioCategorias = new HashSet<>();
 	
 	@OneToMany(mappedBy = "usuario")
