@@ -30,9 +30,8 @@ public class CategoriaController {
 	}
 	
 	@GetMapping("/visualizar/{id}")
-	public Categoria verCategoria(@RequestBody Integer id){
+	public Categoria verCategoria(@PathVariable Integer id){
 		Categoria categoria = categoriaRepository.findById(id).get();
-		
 		return categoria;
 	}
 

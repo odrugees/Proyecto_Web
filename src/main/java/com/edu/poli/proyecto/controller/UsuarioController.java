@@ -64,6 +64,7 @@ public class UsuarioController {
 		dbUsuario.setUsuarioIntereses(nuevoUsuario.getUsuarioIntereses());
 		dbUsuario.setUsuarioConocimientos(nuevoUsuario.getUsuarioConocimientos());
 		dbUsuario.setUsuarioActivo(nuevoUsuario.getUsuarioActivo());
+		dbUsuario.setUsuarioCategorias(nuevoUsuario.getUsuarioCategorias());
 		usuarioRepository.save(dbUsuario);
 		return dbUsuario;
 
@@ -146,5 +147,10 @@ public class UsuarioController {
 		categoriaRepository.save(categoria);
 		
 		return usuario;
+	}
+	
+	@GetMapping("/listar/categorias")
+	public List<Categoria> listarCategorias() {
+		return usuarioRepository.findAllCategorias();
 	}
 }
