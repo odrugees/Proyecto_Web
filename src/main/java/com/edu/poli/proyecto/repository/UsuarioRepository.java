@@ -14,7 +14,7 @@ import com.edu.poli.proyecto.model.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 	
-	@Query ("FROM categoria")
+	@Query ("FROM Categoria")
 	List<Categoria> findAllCategorias();
 
 }
