@@ -18,6 +18,8 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer usuarioId;
 
+	private String usuario;
+	
 	private String usuarioNombre;
 
 	private String usuarioContrasena;
@@ -169,17 +171,11 @@ public class Usuario {
 		this.comentario = comentario;
 	}
 
-	@Override
-	public String toString() {
-		return "Usuario [usuarioId=" + usuarioId + ", usuarioNombre=" + usuarioNombre + ", usuarioContrasena="
-				+ usuarioContrasena + ", usuarioFechaNacimiento=" + usuarioFechaNacimiento + ", usuarioCorreo="
-				+ usuarioCorreo + ", usuarioInformacion=" + usuarioInformacion + ", usuarioIntereses="
-				+ usuarioIntereses + ", usuarioConocimientos=" + usuarioConocimientos + ", usuarioActivo="
-				+ usuarioActivo + ", usuarioRoles=" + usuarioRoles + ", usuarioCategorias=" + usuarioCategorias
-				+ ", publicacion=" + publicacion + ", comentario=" + comentario + "]";
+	public String getUsuario() {
+		return usuario;
 	}
 
-	
-	
-	
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}	
 }
