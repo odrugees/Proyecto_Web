@@ -55,7 +55,8 @@ public class UsuarioController {
 	@PutMapping("/modificar/{id}")
 	public Usuario modificarUsuario(@PathVariable Integer id, @RequestBody Usuario nuevoUsuario) {
 		Usuario dbUsuario = usuarioRepository.findById(id).get();
-
+		
+		dbUsuario.setUsuario(nuevoUsuario.getUsuario());
 		dbUsuario.setUsuarioNombre(nuevoUsuario.getUsuarioNombre());
 		dbUsuario.setUsuarioContrasena(nuevoUsuario.getUsuarioContrasena());
 		dbUsuario.setUsuarioFechaNacimiento(nuevoUsuario.getUsuarioFechaNacimiento());
