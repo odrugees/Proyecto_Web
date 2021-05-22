@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="publicacion")
@@ -28,18 +30,17 @@ public class Publicacion {
 		
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "categoriaId")
+    @JsonIgnore
     private Categoria categoria; 
     
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuarioId")
+    @JsonIgnore
     private Usuario usuario; 
     
 	private String publicacionTexto;
-	
-	private String publicacionTipoImagen;
-	
-	@Column(length = 1000)
-	private byte[] publicacionImagen;
+		
+	private String publicacionImagen;
 	
 	private Integer publicacionMeGusta;
 
@@ -49,6 +50,7 @@ public class Publicacion {
 	private Date publicacionFecha;
 	
 	@OneToMany(mappedBy = "publicacion")
+	@JsonIgnore
     private Set<Comentario> comentario;
 	
 	public Publicacion() {
@@ -87,22 +89,6 @@ public class Publicacion {
 		this.publicacionTexto = publicacionTexto;
 	}
 
-	public String getPublicacionTipoImagen() {
-		return publicacionTipoImagen;
-	}
-
-	public void setPublicacionTipoImagen(String publicacionTipoImagen) {
-		this.publicacionTipoImagen = publicacionTipoImagen;
-	}
-
-	public byte[] getPublicacionImagen() {
-		return publicacionImagen;
-	}
-
-	public void setPublicacionImagen(byte[] publicacionImagen) {
-		this.publicacionImagen = publicacionImagen;
-	}
-
 	public Integer getPublicacionMeGusta() {
 		return publicacionMeGusta;
 	}
@@ -135,13 +121,14 @@ public class Publicacion {
 		this.comentario = comentario;
 	}
 
-	@Override
-	public String toString() {
-		return "Publicacion [publicacionId=" + publicacionId + ", categoria=" + categoria + ", usuario=" + usuario
-				+ ", publicacionTexto=" + publicacionTexto + ", publicacionTipoImagen=" + publicacionTipoImagen
-				+ ", publicacionImagen=" + Arrays.toString(publicacionImagen) + ", publicacionMeGusta="
-				+ publicacionMeGusta + ", publicacionNoMeGusta=" + publicacionNoMeGusta + ", publicacionFecha="
-				+ publicacionFecha + ", comentario=" + comentario + "]";
+	public String getPublicacionImagen() {
+		return publicacionImagen;
 	}
+
+	public void setPublicacionImagen(String publicacionImagen) {
+		this.publicacionImagen = publicacionImagen;
+	}
+
+
 
 }

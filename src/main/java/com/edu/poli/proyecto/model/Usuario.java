@@ -37,16 +37,15 @@ public class Usuario {
 	
 	private boolean usuarioActivo;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "usuarioRoles",
 			joinColumns = @JoinColumn(name = "usuarioId"),
 			inverseJoinColumns = @JoinColumn(name = "rolId")
 			)
-	@JsonIgnore
 	private Set<Rol> usuarioRoles = new HashSet<>();
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "usuarioCategorias",
 			joinColumns = @JoinColumn(name = "usuarioId"),
