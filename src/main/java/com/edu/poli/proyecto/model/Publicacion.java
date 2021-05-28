@@ -28,14 +28,12 @@ public class Publicacion {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int publicacionId;
 		
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "categoriaId")
-    @JsonIgnore
     private Categoria categoria; 
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "usuarioId")
-    @JsonIgnore
     private Usuario usuario; 
     
 	private String publicacionTexto;
