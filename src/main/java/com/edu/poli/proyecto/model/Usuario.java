@@ -54,7 +54,6 @@ public class Usuario {
 	private Set<Categoria> usuarioCategorias = new HashSet<>();
 	
 	@OneToMany(mappedBy = "usuario")
-	@JsonIgnore
     private Set<Publicacion> publicacion;
 	
 	@OneToMany(mappedBy = "usuario")

@@ -15,6 +15,7 @@ import javax.sound.midi.Patch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,7 +56,7 @@ public class PublicacionController {
 
 	@GetMapping("/listar")
 	public List<Publicacion> listaCategoria() {
-		return publicacionRepository.findAll();
+		return publicacionRepository.findAll(Sort.by(Sort.Direction.DESC, "publicacionFecha"));
 	}
 
 	@GetMapping("/visualizar/{id}")

@@ -23,13 +23,12 @@ public class Comentario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int comentarioId;
 	
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "usuarioId")
     private Usuario usuario;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "pubicacionId")
-    @JsonIgnore
     private Publicacion publicacion;
     
     private String comentarioTexto;
